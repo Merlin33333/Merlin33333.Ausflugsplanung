@@ -1,0 +1,164 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Ausflugsplanung</title>
+    </h:head>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Create two equal columns that floats next to each other */
+        .column {
+            float: left;
+            width: 50%;
+            padding: 10px;
+            height: 300px; /* Should be removed. Only for demonstration */
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+    <h:body>
+        <h1>Search by:</h1>
+        <h:form>
+            <div class="row">
+                <div class="column" >
+                    <br></br>
+
+                    <p>Wetter</p>
+
+                    <h:selectOneRadio required="true" value="#{ChoicesBean.weather}">
+                        <f:selectItem itemLabel="Gut" itemValue="weatherisgood"/>
+                        <f:selectItem itemLabel="schlecht" itemValue="weatherisbad" />
+                        <f:selectItem itemLabel="Egal" itemValue="weatherisall"/>
+                    </h:selectOneRadio>
+
+
+
+                    <p>Zeit</p>
+                    <h:selectOneRadio required="true" value="#{ChoicesBean.time}">
+                        <f:selectItem itemLabel="Tag" itemValue="timeday"/>
+                        <f:selectItem itemLabel="Nacht" itemValue="timenight" />
+                        <f:selectItem itemLabel="Egal" itemValue="timeall"/>
+                    </h:selectOneRadio>
+
+
+
+                    <p>In den Ferien</p>
+
+                    <h:selectOneRadio required="true" value="#{ChoicesBean.vacation}">
+                        <f:selectItem itemLabel="Ja" itemValue="vacationyes" />
+                        <f:selectItem itemLabel="Nein" itemValue="vacationno" />
+                        <f:selectItem itemLabel="Egal" itemValue="vacationall"/>
+                    </h:selectOneRadio>
+
+
+                </div>
+                <div class="column">
+                    <br></br>
+                    <p>Kinder?</p>
+
+
+
+                    <h:selectOneRadio required="true" value="#{ChoicesBean.children}">
+                        <f:selectItem itemLabel="Ja" itemValue="childrenyes"/>
+                        <f:selectItem itemLabel="Nein" itemValue="childrenno"/>
+                        <f:selectItem itemLabel="Egal" itemValue="childrenall"/>
+                    </h:selectOneRadio>
+
+
+                    <p>Wochenende</p>
+
+
+                    <h:selectOneRadio required="true" value="#{ChoicesBean.weekend}">
+                        <f:selectItem itemLabel="Ja" itemValue="weekendyes"/>
+                        <f:selectItem itemLabel="Nein" itemValue="weekendno"/>
+                        <f:selectItem itemLabel="Egal" itemValue="weekendall"/>
+                    </h:selectOneRadio>
+
+
+                    <p></p>
+                    <h:commandButton type="submit" id="submit"  value = "Ausflüge anzeigen!" action="#{ChoicesBean.go}"/>   
+                    
+
+
+                </div>
+            </div>
+
+
+
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+
+         
+
+        </h:form>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+
+        <div class="card">
+            <p:dataTable var="product" value="#{dtBasicView.products}">
+                <p:column headerText="Name">
+                    <h:outputText value="#{product.names}" />
+                    
+        
+                </p:column>
+
+                <p:column headerText="Kids">
+                    <h:outputText value="#{product.kids}" id="kids" />
+                 
+                               
+                </p:column>
+
+                <p:column headerText="Wetter">
+                    <h:outputText value="#{product.weather}" />
+                </p:column>
+
+                <p:column headerText="Zeit">
+                    <h:outputText value="#{product.time}" />
+                </p:column>
+                <p:column headerText="Wochenende">
+                    <h:outputText value="#{product.weekend}" />
+                </p:column>
+                     <p:column headerText="Ferien">
+                    <h:outputText value="#{product.holidays}" />
+                </p:column>
+                <p:column headerText="Offen">
+                    <h:outputText value="#{product.open}" />
+                </p:column>
+            </p:dataTable>
+        </div>
+    </h:body>
+</html>
+
